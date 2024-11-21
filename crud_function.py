@@ -6,8 +6,6 @@ cursor = connection.cursor()
 
 
 def initiate_db():
-    connection = sqlite3.connect('not_telegram.db')
-    cursor = connection.cursor()
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS Products(
     id INT PRIMARY KEY NOT NULL,
@@ -21,12 +19,16 @@ def initiate_db():
 
 
 def get_all_products():
-    connection = sqlite3.connect('not_telegram.db')
-    cursor = connection.cursor()
     cursor.execute("SELECT * FROM Products")
     products = cursor.fetchall()
+    connection.commit()
     connection.close()
     return products
+
+
+
+
+
 
 
 
